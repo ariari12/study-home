@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpashop;
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+#        show_sql: true System.out ?? sql? ????? ?? ?? ?????? ???? ??
+        format_sql: true
+        # 배치사이즈 in query로 N+1문제를 1:1 로 해결 컬렉션에서 사용
+        default_batch_fetch_size: 100
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+

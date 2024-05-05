@@ -1,0 +1,20 @@
+spring:
+# 스프링 부트는 별도의 설정이 없으면 메모리로 돌려버리기때문에 아래처럼 따로 설정안해줘도됨
+#  datasource:
+#    url: jdbc:h2:mem:test
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+##        show_sql: true System.out ?? sql? ????? ?? ?? ?????? ???? ??
+#        format_sql: true
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+
