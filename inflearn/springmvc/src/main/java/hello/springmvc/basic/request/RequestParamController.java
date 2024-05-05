@@ -87,6 +87,8 @@ public class RequestParamController {
         log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
         log.info("helloData={}",helloData);
         return "ok";
+
+
     }
 
     @ResponseBody
