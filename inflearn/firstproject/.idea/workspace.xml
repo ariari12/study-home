@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3f1acb6f-0c05-49c0-bc08-1bc3c64b24c3" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/../item-service/src/main/java/hello/itemservice/web/basic/BasicItemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../item-service/src/main/resources/static/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../item-service/src/main/resources/static/html/addForm.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../item-service/src/main/resources/static/html/editForm.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../item-service/src/main/resources/static/html/item.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../item-service/src/main/resources/static/html/items.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../item-service/src/main/resources/templates/basic/item.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../item-service/src/main/resources/templates/basic/items.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2hT3wouwsnVgbu8D9ZKzrMeFv93" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="FirstprojectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="firstproject.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="hello.firstproject.FirstprojectApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="3f1acb6f-0c05-49c0-bc08-1bc3c64b24c3" name="변경" comment="" />
+      <created>1717604481531</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1717604481531</updated>
+      <workItem from="1717604482648" duration="209000" />
+      <workItem from="1717604700783" duration="86000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
