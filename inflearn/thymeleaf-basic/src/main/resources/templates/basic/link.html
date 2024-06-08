@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>URL 링크</h1>
+<ul>
+    <li><a th:href="@{/hello}">basic url</a></li>
+    <!-- ?param1=param1 로 쿼리 파라미터로  바인딩해서 링크를 보내줌-->
+    <li><a th:href="@{/hello(param1=${param1}, param2=${param2})}">hello query param</a></li>
+    <!-- 경로에 변수를 넣을 수 있음 -->
+    <li><a th:href="@{/hello/{param1}/{param2}(param1=${param1}, param2=${param2})}">path variable</a></li>
+    <!-- 경로 변수와 쿼리파라미터를 섞어 쓸 수 있음 -->
+    <li><a th:href="@{/hello/{param1}(param1=${param1}, param2=${param2})}">path variable + query parameter</a></li>
+    <!-- 리터럴 대체 문법으로도 쓸 수 있음 -->
+    <li><a th:href="@{|/hello/${param1}?param2=${param2}|}">리터럴 path variable + query parameter</a></li>
+</ul>
+</body>
+</html>
