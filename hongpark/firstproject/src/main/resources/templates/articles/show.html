@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header.html :: header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:replace="fragments/bodyheader.html :: bodyheader"></nav>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th th:text="${article.id}">1</th>
+        <td th:text="${article.title}">제목 1111</td>
+        <td th:text="${article.content}">내용 1111</td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{|/articles/${article.id}/edit|}" href="/articles/edit.html" class="btn btn-primary">Edit</a>
+<a th:href="@{|/articles/${article.id}/delete|}" href="/articles/edit.html" class="btn btn-danger">Delete</a>
+<a th:href="@{/articles}" href="index.html">Go to Article List</a>
+<th:block th:replace="fragments/comments/_comments.html :: _comments(${commentDtos}, ${article})"></th:block>
+<footer th:replace="fragments/footer.html :: footer"></footer>
+</body>
+</html>
