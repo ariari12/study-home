@@ -3,8 +3,6 @@ package hello.itemservice.validation.web.validation;
 
 import hello.itemservice.validation.domain.item.Item;
 import hello.itemservice.validation.domain.item.ItemRepository;
-import hello.itemservice.validation.domain.item.SaveCheck;
-import hello.itemservice.validation.domain.item.UpdateCheck;
 import hello.itemservice.validation.web.validation.form.ItemSaveForm;
 import hello.itemservice.validation.web.validation.form.ItemUpdateForm;
 import lombok.RequiredArgsConstructor;
