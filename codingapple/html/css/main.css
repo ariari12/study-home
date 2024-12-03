@@ -1,0 +1,110 @@
+.profile{
+    width: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.title{
+    text-align: center; font-size: 16px;
+}
+.content{
+    text-align: center;
+}
+.box{
+    width: 200px;
+    height: 100px;
+    background-color: blanchedalmond;
+    margin-left: 10px;
+    padding: 40px;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 10px;
+    box-shadow: 5px 5px 5px 5px gray;
+}
+
+.container{
+    width: 800px;
+}
+
+.header{
+    width: 100%;
+    height: 50px;
+    background-color: aquamarine;
+}
+.left-menu{
+    width: 20%;
+    height: 400px;
+    background-color: cornflowerblue;
+    /* float: left; */
+    display: inline-block;
+}
+
+.right{
+    width: 80%;
+    height: 400px;
+    background-color: coral;
+    /* float: left; */
+    display: inline-block;
+}
+.footer{
+    /* clear: both; */
+    width: 100%;
+    height: 100px;
+    background-color: gray;
+}
+
+.main-background {
+    padding: 1px;
+    width: 100%;
+    height: 500px;
+    background-image: url(../css/img/shoes.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(70%) s;
+    text-align: center;
+    position: relative;
+}
+.main-title{
+    margin: 50px;
+    
+    font-size: 40px;
+    color: white;
+}
+
+.main-content{
+    font-size: 20px;
+    color: white;    
+    width: 500px;
+    margin: auto;
+}
+.main-button{
+    padding: 15px;
+    background-color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 150px;
+    bottom: 110px;
+    
+}
+
+.explain-box{
+    background-color: gainsboro;
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    padding-top: 1px;
+    margin: auto;
+    top: -40px;
+}
