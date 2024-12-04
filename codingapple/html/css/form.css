@@ -1,0 +1,73 @@
+
+body{
+    margin: 0px;
+}
+div {
+    box-sizing: border-box;
+}
+input{
+    box-sizing: border-box;
+}
+textarea{
+    box-sizing: border-box;
+}
+button{
+    box-sizing: border-box;
+}
+
+.container{    
+    padding: 1px;
+    width: 800px;
+    height: 800px;
+    background-color: rgb(67, 65, 65);
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+}
+.form{
+    position: absolute;
+    width: fit-content;
+    background-color: white;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: auto;
+    top: 100px;
+    padding: 40px;
+    
+    
+}
+.form h2{
+    display: inline-block;
+}
+.form p{
+    margin: 1px;
+}
+
+.form input{
+    margin-bottom: 5px;
+    padding: 10px;
+}
+
+.first-name{
+    float: left;
+}
+
+.last-name{
+    float: left;
+    margin-left: 10px;
+    
+}
+.login-textarea{
+
+    width: 100%;
+    resize: none;
+}
+.form .login-submit{    
+    width: 100px;
+    padding: 2px 10px;
+    position: absolute;
+    right: 40px;
+}

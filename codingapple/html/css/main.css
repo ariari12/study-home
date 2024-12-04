@@ -1,3 +1,17 @@
+@font-face {
+    font-family: '커스텀 폰트';
+    font-weight: 1000;
+    src: url(../font/NanumSquareR.woff);
+}
+
+body{
+    margin: 0px;
+    font-family: 커스텀 폰트;
+}
+div,input, textarea,button {
+    box-sizing: border-box;
+}
+
 .profile{
     width: 100px;
     display: block;
@@ -26,6 +40,7 @@
 
 .container{
     width: 800px;
+    margin: auto;
 }
 
 .header{
@@ -63,7 +78,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    filter: brightness(70%) s;
+    filter: brightness(70%);
     text-align: center;
     position: relative;
 }
@@ -107,4 +122,124 @@
     padding-top: 1px;
     margin: auto;
     top: -40px;
+}
+
+.form-background{
+    background-color: black;
+    padding: 30px;
+}
+
+.form-background p{
+    margin-bottom: 5px;
+}
+
+.form-white{
+    background-color: white;
+    padding: 30px;
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.form-input{
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 100%;
+
+}
+
+.w-100{
+    padding: 10px;
+    width: 100%;
+}
+.w-50{
+    width: 50%;
+    float: left;
+    padding: 10px;
+}
+
+.form-textarea{
+    
+    width: 100%;
+    resize: none;
+}
+.yellow-button{
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+/* .table{
+    border-collapse: collapse;
+} */
+
+.cart-background{
+    background-color: rgb(186, 226, 243);
+    width: 100%;
+    padding: 50px;
+    margin: auto;
+
+}
+
+.cart-table{
+    background-color: white;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 700px;
+    border-radius: 10px;    
+}
+.cart-table tr, .cart-table th,.cart-table td{
+    border: 1px solid rgb(186, 226, 243);
+    border-left: none;
+    border-right: none;
+    padding: 10px;
+}
+
+.cart-table img{ 
+    display: inline-block;       
+    width: 100px;
+    margin: 15px;
+    
+}
+.cart-table p{
+    display: inline-block;    
+    vertical-align: middle;    
+    
+}
+
+.cart-table :nth-child(2){
+    width: 300px;
+}
+.cart-table :nth-child(1){
+    width: 100px;
+}
+.cart-footer{
+    width: 100%;
+}
+.cart-footer .btn{
+    background-color: coral;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    padding: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+    cursor: pointer;
+}
+
+.cart-footer .btn:hover{
+    background-color: chocolate;
+}
+
+.cart-footer .btn:focus{
+    background-color: grey;
+}
+
+.cart-footer .btn:active{
+    background-color: brown;
 }
