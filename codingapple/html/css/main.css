@@ -4,27 +4,35 @@
     src: url(../font/NanumSquareR.woff);
 }
 
-body{
+body {
     margin: 0px;
-    font-family: 커스텀 폰트;
+    /* font-family: 커스텀 폰트; */
 }
-div,input, textarea,button {
+
+div,
+input,
+textarea,
+button {
     box-sizing: border-box;
 }
 
-.profile{
+.profile {
     width: 100px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
-.title{
-    text-align: center; font-size: 16px;
+
+.title {
+    text-align: center;
+    font-size: 16px;
 }
-.content{
+
+.content {
     text-align: center;
 }
-.box{
+
+.box {
     width: 200px;
     height: 100px;
     background-color: blanchedalmond;
@@ -38,17 +46,18 @@ div,input, textarea,button {
     box-shadow: 5px 5px 5px 5px gray;
 }
 
-.container{
+.container {
     width: 800px;
     margin: auto;
 }
 
-.header{
+.header {
     width: 100%;
     height: 50px;
     background-color: aquamarine;
 }
-.left-menu{
+
+.left-menu {
     width: 20%;
     height: 400px;
     background-color: cornflowerblue;
@@ -56,14 +65,15 @@ div,input, textarea,button {
     display: inline-block;
 }
 
-.right{
+.right {
     width: 80%;
     height: 400px;
     background-color: coral;
     /* float: left; */
     display: inline-block;
 }
-.footer{
+
+.footer {
     /* clear: both; */
     width: 100%;
     height: 100px;
@@ -82,20 +92,22 @@ div,input, textarea,button {
     text-align: center;
     position: relative;
 }
-.main-title{
+
+.main-title {
     margin: 50px;
-    
+
     font-size: 40px;
     color: white;
 }
 
-.main-content{
+.main-content {
     font-size: 20px;
-    color: white;    
+    color: white;
     width: 500px;
     margin: auto;
 }
-.main-button{
+
+.main-button {
     padding: 15px;
     background-color: white;
     font-size: 20px;
@@ -107,10 +119,10 @@ div,input, textarea,button {
     margin: auto;
     width: 150px;
     bottom: 110px;
-    
+
 }
 
-.explain-box{
+.explain-box {
     background-color: gainsboro;
     text-align: center;
     width: 80%;
@@ -124,16 +136,16 @@ div,input, textarea,button {
     top: -40px;
 }
 
-.form-background{
+.form-background {
     background-color: black;
     padding: 30px;
 }
 
-.form-background p{
+.form-background p {
     margin-bottom: 5px;
 }
 
-.form-white{
+.form-white {
     background-color: white;
     padding: 30px;
     width: 80%;
@@ -141,7 +153,7 @@ div,input, textarea,button {
     margin: auto;
 }
 
-.form-input{
+.form-input {
     padding: 10px;
     font-size: 20px;
     border: 1px solid black;
@@ -150,22 +162,24 @@ div,input, textarea,button {
 
 }
 
-.w-100{
+.w-100 {
     padding: 10px;
     width: 100%;
 }
-.w-50{
+
+.w-50 {
     width: 50%;
     float: left;
     padding: 10px;
 }
 
-.form-textarea{
-    
+.form-textarea {
+
     width: 100%;
     resize: none;
 }
-.yellow-button{
+
+.yellow-button {
     padding: 10px;
     display: block;
     margin-left: auto;
@@ -176,7 +190,7 @@ div,input, textarea,button {
     border-collapse: collapse;
 } */
 
-.cart-background{
+.cart-background {
     background-color: rgb(186, 226, 243);
     width: 100%;
     padding: 50px;
@@ -184,42 +198,49 @@ div,input, textarea,button {
 
 }
 
-.cart-table{
+.cart-table {
     background-color: white;
     border-collapse: collapse;
     width: 100%;
     max-width: 700px;
-    border-radius: 10px;    
+    border-radius: 10px;
 }
-.cart-table tr, .cart-table th,.cart-table td{
+
+.cart-table tr,
+.cart-table th,
+.cart-table td {
     border: 1px solid rgb(186, 226, 243);
     border-left: none;
     border-right: none;
     padding: 10px;
 }
 
-.cart-table img{ 
-    display: inline-block;       
+.cart-table img {
+    display: inline-block;
     width: 100px;
     margin: 15px;
-    
-}
-.cart-table p{
-    display: inline-block;    
-    vertical-align: middle;    
-    
+
 }
 
-.cart-table :nth-child(2){
+.cart-table p {
+    display: inline-block;
+    vertical-align: middle;
+
+}
+
+.cart-table :nth-child(2) {
     width: 300px;
 }
-.cart-table :nth-child(1){
+
+.cart-table :nth-child(1) {
     width: 100px;
 }
-.cart-footer{
+
+.cart-footer {
     width: 100%;
 }
-.cart-footer .btn{
+
+.cart-footer .btn {
     background-color: coral;
     color: white;
     border-radius: 10px;
@@ -232,14 +253,64 @@ div,input, textarea,button {
     cursor: pointer;
 }
 
-.cart-footer .btn:hover{
+.cart-footer .btn:hover {
     background-color: chocolate;
 }
 
-.cart-footer .btn:focus{
+.cart-footer .btn:focus {
     background-color: grey;
 }
 
-.cart-footer .btn:active{
+.cart-footer .btn:active {
     background-color: brown;
+}
+
+.flex-nav {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: lightcoral;
+    align-items: center;
+}
+
+.nav-item {
+    font-size: 50px;
+    color: white;
+    padding: 20px;
+}
+
+.product-container{    
+    width: 80%;
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;    
+}
+.product-item{
+    flex-grow: 1;    
+    text-align: center;
+    padding: 30px;
+}
+
+
+@media screen and (max-width: 1200px) {
+    
+    .main-title{
+        font-size: 30px;
+    }
+
+    .product-item{
+        width: 48%;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .main-title{
+        font-size: 20px;
+    }
+
+    .product-item{
+        width: 100%;
+    }
+    
 }
