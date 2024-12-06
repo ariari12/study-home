@@ -1,0 +1,184 @@
+body {
+    margin: 0px;    
+}
+
+div,
+input,
+textarea,
+button,img {
+    box-sizing: border-box;
+}
+
+.app-bg{
+    padding: 50px, 0px;
+    width: 100%;    
+    max-width: 1500px;    
+    background: linear-gradient(rgb(152, 164, 241),#5d58e2);
+    margin: auto;    
+}
+.app-bg-white{
+    width: 100%;
+    background: white;
+    margin: auto;
+    text-align: center;
+    padding: 3%;
+}
+
+.flex-wrap{
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;    
+
+    
+}
+.flex-wrap p{
+    margin: 0px;
+    
+}
+.flex-wrap p,.flex-wrap h2{
+    color: white;
+}
+.app-btn{
+    color: white;
+    background: rgb(87, 84, 84);
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: none;
+}
+.flex-item{
+    width: 40%;
+}
+.flex-item img{
+    display: block;
+    margin-left: auto;
+}
+.unit-wrap{
+    padding: 30px;
+    margin-bottom: 40px;
+}
+.unit-title-wrap p{
+    font-size: 10px;
+}
+.unit-title-wrap p,.unit-title-wrap h4{
+    text-align: center;
+    color: white;
+    margin: 0px;
+}
+
+.icon-wrap{
+    display: flex;
+    justify-content: center;
+    
+    
+}
+.icon-wrap i{    
+    width: 60px;
+    border-radius: 100%;
+    background: white;
+    box-sizing: border-box;
+    padding: 15px;
+    text-align: center;
+}
+
+.icon-item {
+    text-align: center;
+    margin: 20px;
+    
+}
+.icon-item p{
+    margin: 5px;
+    font-size: 10px;
+}
+.img-bg-flex{
+    margin: auto;
+    display: flex;
+    width: 60%;
+    
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 50px;
+}
+.img-bg-flex>div{
+    width: 50%;
+}
+.bg-1,.bg-2,.bg-3,.bg-4{
+    position: relative;
+    background-position: center;    
+    color: white;
+
+}
+.text-wrapper{
+    margin: 60px;
+}
+.bg-1{
+    background-image: url(./img/portfolio-1.jpg);            
+    transition: all 1s;
+}
+.bg-2{
+    background-image: url(./img/portfolio-2.jpg);    
+}
+.bg-3{
+    background-image: url(./img/portfolio-3.jpg);    
+}
+.bg-4{
+    background-image: url(./img/portfolio-4.jpg);
+    background-position: right center;
+}
+
+.bg-scale-border{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 30px solid white 0;
+    transition: all 1s;
+}
+
+.bg-scale-border:hover {
+    border: 30px solid white;        
+
+}
+
+.img-bg-flex img{
+    width: 100%;
+    height: 100%;
+}
+.bg-flex{
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.bg-flex div{
+    padding: 10px;
+    width: 50px;
+    background-color: rgb(100, 116, 205);
+    border-radius: 100%;
+    text-align: center;
+}
+.bg-flex i{
+    color: white;
+}
+
+@media screen and (max-width: 576px) {
+    .flex-wrap{        
+        flex-direction: column;        
+        margin: auto;
+    }
+    .flex-item{
+        text-align: center;
+        margin: auto;
+        width: auto;
+    }
+    .flex-item img{
+        display: block;
+        margin: auto;
+    }
+    .img-bg-flex div{
+        width: auto;
+        
+    }
+    
+}
+
