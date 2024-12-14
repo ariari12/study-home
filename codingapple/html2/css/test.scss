@@ -1,0 +1,98 @@
+@use '_global';
+
+@mixin 활성화(){
+    background: blue;
+    color: white;
+    border: 1px solid blue;
+}
+
+@mixin 배경색($색깔){
+    background: $색깔;
+}
+@mixin 테두리($색깔){
+    border: 1px solid $색깔;
+}
+
+
+@mixin row(){
+    display: flex;
+    border: 1px black solid;
+}
+
+@mixin col($크기){
+    width: $크기;
+    
+}
+
+%div{
+    width: 200px;
+    height: 200px;
+    padding: 200px;
+}
+
+.div-green{
+    @extend %div;
+    background: green;
+}
+
+.div-blue{
+    @extend %div;
+    background: blue;
+    
+}
+.div-red{
+    @extend %div;
+    background: red;
+    
+}
+ul {
+    li {
+        list-style: none;
+        border: 1px gray solid;        
+      }    
+    li.active{
+        @include 활성화();
+    }
+    padding: 10px;
+    li.border-none{
+        border-top: none;
+        border-bottom: none;
+    }
+}
+
+p{
+    padding: 5px;    
+    border-radius: 3px;   
+}
+
+.success{
+    @include 배경색(green);
+    @include 테두리(red);
+
+}
+.alert{
+    @include 배경색(blue);
+    @include 테두리(red);
+
+}
+.warning{
+    @include 배경색(yellow);
+    @include 테두리(red);
+
+}
+
+.row{
+    @include row();
+}
+.col-6{
+    @include col(50%);
+}
+.col-4{
+    @include col(33.33%)
+}
+.col-3{
+    @include col(25%)
+}
+
+
+

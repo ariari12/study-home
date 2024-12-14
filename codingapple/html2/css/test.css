@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.div-red, .div-blue, .div-green {
+  width: 200px;
+  height: 200px;
+  padding: 200px;
+}
+
+.div-green {
+  background: green;
+}
+
+.div-blue {
+  background: blue;
+}
+
+.div-red {
+  background: red;
+}
+
+ul {
+  padding: 10px;
+}
+ul li {
+  list-style: none;
+  border: 1px gray solid;
+}
+ul li.active {
+  background: blue;
+  color: white;
+  border: 1px solid blue;
+}
+ul li.border-none {
+  border-top: none;
+  border-bottom: none;
+}
+
+p {
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.success {
+  background: green;
+  border: 1px solid red;
+}
+
+.alert {
+  background: blue;
+  border: 1px solid red;
+}
+
+.warning {
+  background: yellow;
+  border: 1px solid red;
+}
+
+.row {
+  display: flex;
+  border: 1px black solid;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.col-4 {
+  width: 33.33%;
+}
+
+.col-3 {
+  width: 25%;
+}/*# sourceMappingURL=test.css.map */
