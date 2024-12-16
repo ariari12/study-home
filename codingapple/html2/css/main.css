@@ -1,0 +1,57 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px 100px;
+    grid-template-areas: 
+        "헤더 헤더 헤더 헤더"
+        "사이드 컨텐츠 컨텐츠 컨텐츠"
+        "사이드 컨텐츠 컨텐츠 컨텐츠";
+    
+}
+
+.grid-container div{
+    border: 1px solid black;
+}
+
+.grid-nav{
+    grid-area: 헤더;
+    /* grid-column: 1 / 4; */
+}
+.grid-sidebar{
+    grid-area: 사이드;
+    /* grid-row: 2 / 4; */
+}
+.grid-container{
+    grid-area: 컨텐츠;
+    /* grid-column: 2 / 4;
+    grid-row: 2 / 4; */
+}
+
+@media screen and (max-width: 768px){
+    .grid-container{
+        grid-template-columns: 100px;
+        grid-template-rows: 100px 100px;
+        grid-template-areas: 
+        " 헤더 "
+        " 사이드 "
+        " 컨텐츠 "
+    }
+}
+
+@media screen and (min-width: 769px){
+    .grid-container2{
+        display: grid;
+        
+        
+        grid-template-columns: 1fr 1fr 1fr;                  
+    }
+    .grid-container2 div, img{
+        width: 100%;
+        
+    }
+    .img-1{
+        grid-column: 1 / 3;
+        grid-row: 1 / 3;
+    }
+
+}

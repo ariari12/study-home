@@ -1,4 +1,5 @@
-body {
+@charset "UTF-8";
+html, body {
   margin: 0;
 }
 
@@ -76,4 +77,68 @@ p {
 
 .col-3 {
   width: 25%;
+}
+
+@keyframes 움찔움찔 {
+  0% {
+    transform: rotate(-5deg);
+  }
+  35% {
+    transform: rotate(5deg);
+  }
+  65% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes 회전하기 {
+  25% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(50deg) scale(2);
+  }
+}
+.container {
+  width: 100%;
+  text-align: center;
+}
+.container div {
+  margin: 10px;
+}
+.container .rotate-ani-1:hover {
+  animation-name: 움찔움찔;
+  animation-duration: 0.5s;
+}
+.container .rotate-ani-2:hover {
+  animation-name: 회전하기;
+  animation-duration: 1s;
+}
+
+@keyframes 메뉴펼치기 {}
+.menu-bg {
+  position: absolute;
+  top: 0px;
+  left: -550px;
+  width: 50%;
+  height: 150vh;
+  background: black;
+  padding: 3%;
+  transition: all 1s;
+}
+.menu-bg .menu {
+  color: white;
+  text-align: end;
+}
+.menu-bg .item {
+  color: white;
+  text-align: center;
+}
+
+.menu-bg:hover {
+  animation-name: 메뉴펼치기;
+  animation-duration: 1s;
+  left: -300px;
 }/*# sourceMappingURL=test.css.map */
