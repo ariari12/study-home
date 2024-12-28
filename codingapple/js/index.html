@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="alert-box" id="alert">
+        <p id="title">알림창</p>
+        <button onclick="알림창('none')">닫기</button>
+    </div>
+    <button onclick="알림창('block','아이디를 입력하세요')">
+        버튼1
+    </button>
+    <button onclick="알림창('block','비밀번호를 입력하세요')">
+        버튼2
+    </button>
+
+    <h1 id="hello">안녕하세요</h1>    
+    <script>
+        document.getElementById('hello').innerHTML = '안녕';        
+        document.getElementById('hello').style.fontSize = '16px';
+
+        function 알림창(display, 내용){
+            document.getElementById('alert').style.display = display;
+            document.getElementById('title').innerHTML = 내용
+        }        
+        
+        
+    </script>
+    
+</body>
+</html>
