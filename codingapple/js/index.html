@@ -26,14 +26,18 @@
     </div> 
 
     <script>                        
-        $('form').on('submit',(e)=>{
+        $('form').on('submit',(e)=>{                        
            if($('#email').val() == ''){            
             alert('값을 입력해주세요');
             e.preventDefault();
-           }else if($('#email').val().length < 6){
-            alert('비밀번호는 6자 이상입니다.');
+           }else if(!/\S+@\S+\.\S+/.test($('#email').val())){
+            alert('이메일 형식이 아닙니다.');
             e.preventDefault();
            }
+           else if($('#password').val().length < 6){
+            alert('비밀번호는 6자 이상입니다.');
+            e.preventDefault();
+           }           
            
         });
     </script>
@@ -46,19 +50,97 @@
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
-      </nav> 
-      <ul class="list-group">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
-      </ul>
+    </nav> 
+    <script>
+        $(window).on('scroll',()=>{
+            if($(window).scrollTop()>100){
+                $('.navbar-brand').css('font-size','60px');
+                console.log('asd');
+            }
+            
+        });
+    </script>
+
+
+    <ul class="list-group">
+    <li class="list-group-item">An item</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+    <li class="list-group-item">A fourth item</li>
+    <li class="list-group-item">And a fifth one</li>
+    </ul>
 
     <div class="main-bg">
         <h4>Shirts on Sale</h4>
-        <button id="login">로그인</button>
+        <button id="login" class="btn btn-danger">로그인</button>
+    </div>    
+
+    <div class="alert alert-danger">
+        <span id="num">5</span>초 이내로 구매시 사은품 증정!
     </div>
+    <div style="width: 200px; height: 100px; overflow-y: scroll;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, ad minima fugiat culpa tempora ipsam reprehenderit ipsum officia ratione adipisci tenetur hic ab. Quibusdam reprehenderit deleniti provident omnis sapiente consectetur?</div>
+
+    <div style="height: 1000px;"></div>
+
+    <div style="overflow: hidden;">
+        <div class="slide-container">
+            <div class="slide-box">
+                <img src="img/car1.png" alt="">
+            </div>
+            <div class="slide-box">
+                <img src="img/car2.png" alt="">
+            </div>
+            <div class="slide-box">
+                <img src="img/car3.png" alt="">
+            </div>
+            
+        </div>
+    </div>
+
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+    <button class="next">다음</button>
+    <button class="prev">이전</button>
+
+    <script>
+        $('.slide-1').on('click',()=>{
+            $('.slide-container').css('transform','translateX(0vw)');
+        })
+        $('.slide-2').on('click',()=>{
+            $('.slide-container').css('transform','translateX(-100vw)');
+        })
+        $('.slide-3').on('click',()=>{
+            $('.slide-container').css('transform','translateX(-200vw)');
+        })
+    </script>
+    <script>
+        var img = 1;
+        $('.next').on('click',()=>{
+            $('.slide-container').css('transform','translateX(-'+img+ '00vw)');
+                img++;
+        });
+        $('.prev').on('click',()=>{            
+            $('.slide-container').css('transform','translateX('+ (img * -100 +100) +'vw)');
+            img--;            
+        });
+    </script>
+    
+    <script>
+        var countNum = 4;                
+        var timer = setInterval(()=>{    
+            console.log(countNum);
+            if(countNum == 0){
+                $('.alert').hide();  
+                clearTimeout(timer);
+            }else{
+                $('#num').html(countNum);                
+                countNum--;
+            }                        
+        }, 1000);
+
+        
+    </script>
     
 
 
