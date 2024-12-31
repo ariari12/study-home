@@ -24,6 +24,15 @@
           </form>           
         </div>
     </div> 
+    <script>
+        var 배경=$('.black-bg')        
+        배경.on('click',(e)=>{
+            console.log(배경);
+            if($(e.target).is(배경)){
+                배경.removeClass('show-modal');
+            }
+        });
+    </script>
 
     <script>                        
         $('form').on('submit',(e)=>{                        
@@ -54,8 +63,9 @@
     <script>
         $(window).on('scroll',()=>{
             if($(window).scrollTop()>100){
-                $('.navbar-brand').css('font-size','60px');
-                console.log('asd');
+                $('.navbar-brand').css('font-size','60px');                
+            }else{
+                $('.navbar-brand').css('font-size','30px');
             }
             
         });
@@ -78,8 +88,20 @@
     <div class="alert alert-danger">
         <span id="num">5</span>초 이내로 구매시 사은품 증정!
     </div>
-    <div style="width: 200px; height: 100px; overflow-y: scroll;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, ad minima fugiat culpa tempora ipsam reprehenderit ipsum officia ratione adipisci tenetur hic ab. Quibusdam reprehenderit deleniti provident omnis sapiente consectetur?</div>
+    <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, ad minima fugiat culpa tempora ipsam reprehenderit ipsum officia ratione adipisci tenetur hic ab. Quibusdam reprehenderit deleniti provident omnis sapiente consectetur?</div>
 
+    <script>
+        $('.lorem').on('scroll',()=>{
+            var 스크롤양r = $('.lorem').scrollTop();
+            var 실제높이 = $('.lorem').get(0).scrollHeight;
+            var 높이 = $('.lorem').get(0).clientHeight;
+            console.log(scrollBar);
+            console.log(height);
+            if(스크롤양 + 높이 > 실제높이-10){
+                alert('회원약관');
+            }
+        });        
+    </script>
     <div style="height: 1000px;"></div>
 
     <div style="overflow: hidden;">

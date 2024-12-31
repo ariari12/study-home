@@ -21,6 +21,7 @@
     padding: 30px;    
     visibility: hidden;
     transition: all 1s;
+    z-index: 6;
     opacity: 0;
 }
   .white-bg {
@@ -59,4 +60,5 @@
 }
 .navbar-brand{
     font-size: 30px;
+    transition: all 1s;
 }
