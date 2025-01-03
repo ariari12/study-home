@@ -83,9 +83,9 @@
       };
       function 가격필터(price){
         return products.filter(function(a){
-          return a.price <= price;
+          return a.price <= price;          
         });
-      };
+      };      
 
       function 카드추가(data){
         var card = 
@@ -93,6 +93,7 @@
             <img src="https://via.placeholder.com/600" class="w-100">
             <h5>${data.title}</h5>
             <p>가격 : ${data.price}</p>
+            <button class="btn btn-primary buy">구매</button>
           </div>`;
         $('.row').append(card);
       };
@@ -122,7 +123,39 @@
         filter.forEach((data)=>{
         카드추가(data);
         });
-      });
+      });     
+
+      var 구매버튼 = $('.buy');
+      구매버튼.on('click',(e)=>{        
+        const title = $(e.target).siblings('h5').text();
+        let arr = [];
+        let json;
+        
+
+        if(localStorage.getItem('cart') == null){                    
+          arr = [{title, quantity : 1}];          
+          json = JSON.stringify(arr);
+          console.log(json);
+          localStorage.setItem('cart', json);
+        }else{
+          arr = JSON.parse(localStorage.getItem('cart'));
+          console.log(title);
+          let target = arr.find((item) => item.title === title);
+          console.log('target'+target);
+          if(target){            
+            target.quantity++;
+          }else{            
+            arr.push(
+              {
+                title,
+                quantity : 1
+              }
+            );            
+          }
+          json = JSON.stringify(arr);
+          localStorage.setItem('cart', json);
+        }
+      });      
     </script>
     <div class="container">
       <button class="btn btn-danger" id="more">더보기</button>
