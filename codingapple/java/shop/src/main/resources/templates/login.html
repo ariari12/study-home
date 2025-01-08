@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -10,9 +11,14 @@
 </head>
 <body>
 <div th:replace="~{nav.html :: navbar}"></div>
-<form action="/add" method="post">
-    <input type="text" name="title">
-    <input type="text" name="price">
+<div th:if="${param.error}">
+    <h4>아이디나 비밀번호가 틀렸습니다.</h4>
+</div>
+<form action="/login" method="post" th:object="${member}">
+    <label th:for="username"></label>
+    <input type="text" th:field="*{username}">
+    <label th:for="password"></label>
+    <input type="password" th:field="*{password}">
     <button type="submit">전송</button>
 </form>
 </body>

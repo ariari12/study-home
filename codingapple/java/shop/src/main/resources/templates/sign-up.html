@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -10,13 +11,13 @@
 </head>
 <body>
 <div th:replace="~{nav.html :: navbar}"></div>
-<form action="/add" method="post">
-    <label th:for="username"></label>
-    <input type="text" th:field="username">
-    <label th:for="password"></label>
-    <input type="text" th:field="password">
-    <label th:for="displayName"></label>
-    <input type="text" th:field="displayName">
+<form action="/sign-up" method="post" th:object="${member}">
+    <label th:for="username">아이디</label>
+    <input type="text" th:field="*{username}">
+    <label th:for="password">비밀번호</label>
+    <input type="text" th:field="*{password}">
+    <label th:for="displayName">이름</label>
+    <input type="text" th:field="*{displayName}">
     <button type="submit">전송</button>
 </form>
 </body>

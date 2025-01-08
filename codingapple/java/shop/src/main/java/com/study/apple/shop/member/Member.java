@@ -1,4 +1,4 @@
-package com.study.apple.shop.item;
+package com.study.apple.shop.member;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,10 +12,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Item {
+public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private Long price;
+    private String username;
+    private String password;
+    private String displayName;
 }

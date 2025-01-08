@@ -1,22 +1,48 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, member-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="/main.css">
 </head>
 <body>
-    <div>
-        <img src="" alt="">
-        <h4>바지</h4>
-        <p>7억</p>
+    <div th:replace="~{nav.html :: navbar}"></div>
+
+    <div class="card" th:each="item : ${items}">
+        <img src="https://placehold.co/300" alt="">
+        <div>
+            <a th:href="@{|/detail/${item.id}|}"><h4 th:text="${item.title}">바지</h4></a>
+            <p th:text="|${item.price}원|">7억</p>
+            <p th:text="|${item.username}|">박순자</p>
+            <a th:href="|/detail/${item.id}/modify|">✏️</a>
+            <button th:onclick="|deleteItem(${item.id})|">🗑️</button>
+        </div>
     </div>
-    <div>
-        <img src="" alt="">
-        <h4>바지</h4>
-        <p>7억</p>
-    </div>
+    <span th:each="p : ${#numbers.sequence(0,totalPage)}">
+        <a th:href="@{|/list/${p}|}" th:text="${p+1}"></a>
+    </span>
+
+    <script>
+        function deleteItem(id) {
+            fetch('/delete', {
+                method: 'delete',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(id)
+            }).then(
+                res => res.text()
+            ).catch(err =>{
+                console.log(err)
+            }).finally(() =>{
+                window.location.reload();
+            })
+        }
+
+    </script>
 </body>
 </html>

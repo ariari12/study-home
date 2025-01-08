@@ -1,6 +1,11 @@
 package com.study.apple.shop.item;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +32,8 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    public String addPost(@ModelAttribute Item item) {
-        itemService.save(item);
+    public String addPost(@ModelAttribute Item item, Authentication auth) {
+        itemService.save(item, auth.getName());
         return "redirect:/list";
     }
 
@@ -50,5 +55,28 @@ public class ItemController {
     public String modify(@ModelAttribute Item item) {
         itemService.modify(item);
         return "redirect:/detail/"+item.getId();
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteItem(@RequestBody Long id) {
+        itemService.deleteById(id);
+        return ResponseEntity.status(200).body("삭제완료");
+    }
+
+    @GetMapping("/test2")
+    public String deleteItem() {
+        String encode = new BCryptPasswordEncoder().encode("문자~~~~");
+        System.out.println(encode);
+        return "redirect:/list";
+    }
+
+    @GetMapping("/list/{page}")
+    public String getListPage(Model model, @PathVariable Integer page) {
+        Page<Item> result = itemService.findByPage(PageRequest.of(page, 5));
+
+
+        model.addAttribute("items", result);
+        model.addAttribute("totalPage", result.getTotalPages()-1);
+        return "list";
     }
 }
