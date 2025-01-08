@@ -18,6 +18,9 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
+application.yml
+application.properties
+secrets.env
 .idea
 *.iws
 *.iml
@@ -40,7 +43,3 @@ out/
 codingapple/db/database/mysql-data/
 *.sock
 *.cnf
-## 환경설정 파일
-/application.yml
-/application.properties
-/secrets.env
