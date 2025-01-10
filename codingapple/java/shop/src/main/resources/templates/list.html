@@ -12,8 +12,13 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <body>
     <div th:replace="~{nav.html :: navbar}"></div>
 
+    <form action="/search" method="POST">
+        <input name="searchText" style="display: inline">
+        <button>검색</button>
+    </form>
+
     <div class="card" th:each="item : ${items}">
-        <img src="https://placehold.co/300" alt="">
+        <img th:src="${item.img}" alt="">
         <div>
             <a th:href="@{|/detail/${item.id}|}"><h4 th:text="${item.title}">바지</h4></a>
             <p th:text="|${item.price}원|">7억</p>
@@ -22,9 +27,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
             <button th:onclick="|deleteItem(${item.id})|">🗑️</button>
         </div>
     </div>
-    <span th:each="p : ${#numbers.sequence(0,totalPage)}">
-        <a th:href="@{|/list/${p}|}" th:text="${p+1}"></a>
-    </span>
+    <div th:if="${totalPage}">
+        <span th:each="p : ${#numbers.sequence(0,totalPage)}">
+            <a th:href="@{|/list/${p}|}" th:text="${p+1}"></a>
+        </span>
+    </div>
+
 
     <script>
         function deleteItem(id) {

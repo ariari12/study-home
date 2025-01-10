@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -15,7 +16,31 @@
     <img src="https://placehold.co/300">
     <h4 th:text="*{title}">금도금 바지</h4>
     <p th:text="|*{price}원|">7억</p>
+    <p th:text="|*{img}|">이미지</p>
     <a th:href="|/detail/*{id}/modify|">수정</a>
 </div>
+<form action="/order" method="post">
+    <input name="title" th:value="${item.title}">
+    <input name="price" th:value="${item.price}">
+    <input name="count" placeholder="count">
+    <button style="text-align: left">주문하기</button>
+</form>
+<div sec:authorize="isAuthenticated()">
+    <form action="/comment/add" method="post">
+        <input type="hidden" th:name="parentId" th:value="${item.id}">
+        <label>
+            댓글 :
+            <textarea cols="50" rows="5" name="content" style="display: block"></textarea>
+        </label>
+        <button type="submit">작성</button>
+    </form>
+</div>
+<div th:if="${comment != null}">
+    <div th:each="c : ${comment}">
+        <p th:text="${c.username}"></p>
+        <p th:text="${c.content}"></p>
+    </div>
+</div>
+
 </body>
 </html>

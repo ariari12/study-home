@@ -32,16 +32,11 @@ public class MyUserDetailsService implements UserDetailsService {
         //return new User(유저아이디, 비번, 권한) 해주세요
         //return new User(member.getUsername(), member.getPassword(),grantedAuthorities);
         CustomUser user = new CustomUser(member.getUsername(), member.getPassword(), grantedAuthorities);
-        user.displayName = member.getDisplayName();
+        user.setDisplayName(member.getDisplayName());
+        user.setId(member.getId());
         return user;
     }
 
-    class CustomUser extends User {
-        String displayName;
-        public CustomUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-            super(username, password, authorities);
-        }
-    }
 
 }
 

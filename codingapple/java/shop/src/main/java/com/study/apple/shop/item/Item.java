@@ -19,4 +19,5 @@ public class Item {
     private String title;
     private Long price;
     private String username;
+    private String img;
 }

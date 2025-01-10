@@ -41,7 +41,7 @@ public class MemberController {
 
     @GetMapping("/my-page")
     public String myPage(Authentication auth) {
-        MyUserDetailsService.CustomUser principal = (MyUserDetailsService.CustomUser) auth.getPrincipal();
+        CustomUser principal = (CustomUser) auth.getPrincipal();
         return "mypage";
     }
 

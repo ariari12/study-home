@@ -1,5 +1,7 @@
 package com.study.apple.shop.item;
 
+import com.study.apple.shop.comment.CommentSaveDto;
+import com.study.apple.shop.comment.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -9,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,6 +21,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemController {
     private final ItemService itemService;
+    private final S3Service s3Service;
+    private final CommentService commentService;
+
     @GetMapping("/list")
     public String list(Model model) {
         List<Item> result = itemService.findAll();
@@ -33,6 +39,7 @@ public class ItemController {
 
     @PostMapping("/add")
     public String addPost(@ModelAttribute Item item, Authentication auth) {
+        System.out.println("item.getImg() = " + item.getImg());
         itemService.save(item, auth.getName());
         return "redirect:/list";
     }
@@ -40,7 +47,9 @@ public class ItemController {
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable Long id, Model model) {
         Item item = itemService.findById(id);
+        List<CommentSaveDto> comment = commentService.getComment(id);
         model.addAttribute("item", item);
+        model.addAttribute("comment", comment);
         return "detail";
     }
 
@@ -79,4 +88,21 @@ public class ItemController {
         model.addAttribute("totalPage", result.getTotalPages()-1);
         return "list";
     }
+
+    @GetMapping("/presigned-url")
+    @ResponseBody
+    public String getURL(@RequestParam String filename){
+        var result = s3Service.createPresignedUrl("test/"+filename);
+        System.out.println("result = " + result);
+        return result;
+    }
+
+    @PostMapping("/search")
+    public String postSearch(@RequestParam String searchText, Model model){
+        List<Item> result = itemService.findAllByTitleContains(searchText);
+        System.out.println("result = " + result);
+        model.addAttribute("items", result);
+        return "list";
+    }
+
 }

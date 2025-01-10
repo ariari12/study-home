@@ -31,6 +31,7 @@ public class ItemService {
         Item findItem = itemRepository.findById(item.getId()).orElseThrow(IllegalArgumentException::new);
         findItem.setPrice(item.getPrice());
         findItem.setTitle(item.getTitle());
+        findItem.setImg(item.getImg());
     }
 
     public void deleteById(Long id) {
@@ -39,5 +40,9 @@ public class ItemService {
 
     public Page<Item> findByPage(Pageable pageable) {
         return itemRepository.findPageBy(pageable);
+    }
+
+    public List<Item> findAllByTitleContains(String title) {
+        return itemRepository.findAllByTitleContains(title);
     }
 }
