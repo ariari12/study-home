@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, member-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+<div th:replace="~{nav.html :: navbar}"></div>
+<div th:if="${param.error}">
+    <h4>아이디나 비밀번호가 틀렸습니다.</h4>
+</div>
+<form action="/login" method="post" th:object="${member}">
+    <label th:for="username"></label>
+    <input type="text" th:field="*{username}">
+    <label th:for="password"></label>
+    <input type="password" th:field="*{password}">
+    <button type="submit">전송</button>
+</form>
+</body>
+</html>
