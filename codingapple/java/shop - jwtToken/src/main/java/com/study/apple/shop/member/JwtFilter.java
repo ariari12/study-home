@@ -7,10 +7,8 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -35,28 +33,27 @@ public class JwtFilter extends OncePerRequestFilter {
         for(Cookie cookie : cookies) {
             if (cookie.getName().equals("JWT")) {
                 jwtCookie = cookie.getValue();
+                System.out.println("jwtCookie = " + jwtCookie);
             }
         }
-
+        System.out.println("jwtCookie = " + jwtCookie);
         Claims claims;
         try{
             claims = JwtUtil.extractToken(jwtCookie);
-            System.out.println("claims2 = " + claims);
+
         }catch (Exception e){
-            System.out.println("e.getMessage() = " + e.getMessage());
-            System.out.println(" 유효기간 만료 또는 위조 ");
             filterChain.doFilter(request, response);
             return;
         }
 
         String[] arr = claims.get("authorities").toString().split(",");
-
-        List<SimpleGrantedAuthority> authorities =
+        System.out.println("arr = " + Arrays.toString(arr));
+        var authorities =
                 Arrays.stream(arr).map(SimpleGrantedAuthority::new).toList();
 
         CustomUser customUser = new CustomUser(
                 claims.get("username").toString(),
-                "none", // 비밀번호자리이나 토큰정보에는 비밀번호를 넣지않았으므로 null값
+                "none", // 비밀번호자리이나 토큰정보에는 패스워드를 넣지않았으므로 null값
                 authorities
         );
         customUser.setDisplayName(claims.get("displayName").toString());
@@ -64,7 +61,8 @@ public class JwtFilter extends OncePerRequestFilter {
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                 // 유저네임, 패스워드
                 customUser,
-                null
+                null,
+                authorities
         );
         authToken.setDetails(new WebAuthenticationDetailsSource()
                 .buildDetails(request));

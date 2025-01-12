@@ -5,7 +5,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
@@ -34,7 +33,7 @@ public class JwtUtil {
                 .claim("displayName", user.getDisplayName())
                 .claim("authorities", authorities)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 10000)) //유효기간 10초
+                .expiration(new Date(System.currentTimeMillis() + 30000)) //유효기간 30초
                 .signWith(key)
                 .compact();
         return jwt;
@@ -42,7 +41,7 @@ public class JwtUtil {
 
     // JWT 까주는 함수
     public static Claims extractToken(String token) {
-
+        System.out.println("token = " + token);
         Claims claims = Jwts.parser().verifyWith(key).build()
                 .parseSignedClaims(token).getPayload();
         System.out.println("claims = " + claims);

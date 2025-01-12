@@ -53,6 +53,7 @@ public class MemberController {
     @GetMapping("/my-page/jwt")
     @ResponseBody
     public String myPageJWT(Authentication auth) {
+
         CustomUser customUser = (CustomUser) auth.getPrincipal();
         System.out.println("customUser = " + customUser);
         System.out.println("displayname = " + customUser.getDisplayName());
