@@ -21,5 +21,33 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
     <input type="password" th:field="*{password}">
     <button type="submit">전송</button>
 </form>
+
+<form action="/login" method="post">
+    <label for="username1"></label>
+    <input type="text" name="username" id="username1">
+    <label th:for="password1"></label>
+    <input type="password" name="password" id="password1">
+</form>
+<button onclick="loginJWT()">전송</button>
+<script>
+    function loginJWT() {
+        fetch('/login/jwt', {
+            method : 'POST',
+            headers : {'Content-Type': 'application/json'},
+            body : JSON.stringify({
+                username : document.querySelector('#username1').value,
+                password : document.querySelector('#password1').value
+            })
+        }).then(r => r.text()).then((r)=>{ console.log(r) })
+    }
+</script>
+<button onclick="getMyPage()">JWT 마이페이지 주세요</button>
+<script>
+    function getMyPage() {
+        fetch('/my-page/jwt')
+        .then(r => r.text())
+            .then((r)=>{ console.log(r) })
+    }
+</script>
 </body>
 </html>
