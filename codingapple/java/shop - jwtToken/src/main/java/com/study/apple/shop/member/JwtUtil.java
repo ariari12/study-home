@@ -42,9 +42,26 @@ public class JwtUtil {
     // JWT 까주는 함수
     public static Claims extractToken(String token) {
         System.out.println("token = " + token);
-        Claims claims = Jwts.parser().verifyWith(key).build()
-                .parseSignedClaims(token).getPayload();
+        Claims claims = Jwts.parser()
+                .verifyWith(key).build()
+                .parseSignedClaims(token)
+                .getPayload();
         System.out.println("claims = " + claims);
         return claims;
+    }
+
+    // 리프레시 토큰 생성
+    public static String createRefreshToken(String username) {
+        long refreshTokenValidTime = 1000L * 60L * 60L * 24L * 7L; // 7일 예시
+
+        // 여기서는 간단하게 JWT 포맷으로 Refresh Token을 만듭니다.
+        return Jwts.builder()
+                .subject("refresh-token")
+                .claim("username", username)
+                .issuedAt(new Date(System.currentTimeMillis()))
+                // Refresh Token 만료시간: 7일
+                .expiration(new Date(System.currentTimeMillis() + refreshTokenValidTime))
+                .signWith(key)
+                .compact();
     }
 }
