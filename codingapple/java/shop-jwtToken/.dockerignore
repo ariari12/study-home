@@ -1,0 +1,8 @@
+# 환경 변수 파일
+.env
+resources/application.properties
+resources/application.yml
+# Git 디렉터리
+.git/
+.gitignore
+

@@ -1,0 +1,43 @@
+services:
+  myserver-container:
+    build: .
+    environment:
+        SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+        SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+        SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+        SPRING_CLOUD_AWS_CREDENTIALS_ACCESS_KEY: ${SPRING_CLOUD_AWS_CREDENTIALS_ACCESS_KEY}
+        SPRING_CLOUD_AWS_CREDENTIALS_SECRET_KEY: ${SPRING_CLOUD_AWS_CREDENTIALS_SECRET_KEY}
+        SPRING_CLOUD_AWS_REGION_STATIC: ${SPRING_CLOUD_AWS_REGION_STATIC}
+        SPRING_CLOUD_AWS_S3_BUCKET: ${SPRING_CLOUD_AWS_S3_BUCKET}
+    develop:
+      watch:
+        - action: sync+restart
+          path: .
+          target: /app
+        - action: rebuild
+          path: build.gradle
+    depends_on:
+      mysql-container:
+        condition: service_healthy
+#    volumes:
+#      - C:/java/study/online/codingapple/java/shop-jwtToken:/app
+
+  mysql-container:
+    image: mysql:latest  # Docker Hub의 MySQL 이미지
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    ports:
+      - "3306:3306"  # 로컬 3306 -> 컨테이너 3306
+
+  nginx-container:
+    image: nginx:1
+    ports:
+      - "80:80"
+    depends_on:
+      - myserver-container

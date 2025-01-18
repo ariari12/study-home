@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, member-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+<div th:replace="~{nav.html :: navbar}"></div>
+<div th:if="${param.error}">
+    <h4>아이디나 비밀번호가 틀렸습니다.</h4>
+</div>
+<form action="/login" method="post" th:object="${member}">
+    <label th:for="username"></label>
+    <input type="text" th:field="*{username}">
+    <label th:for="password"></label>
+    <input type="password" th:field="*{password}">
+    <button type="submit">전송</button>
+</form>
+
+<form action="/login" method="post">
+    <label for="username1"></label>
+    <input type="text" name="username" id="username1">
+    <label th:for="password1"></label>
+    <input type="password" name="password" id="password1">
+</form>
+<button onclick="loginJWT()">전송</button>
+<script>
+    function loginJWT() {
+        fetch('/login/jwt', {
+            method : 'POST',
+            headers : {'Content-Type': 'application/json'},
+            body : JSON.stringify({
+                username : document.querySelector('#username1').value,
+                password : document.querySelector('#password1').value
+            })
+        }).then(r => r.text()).then((r)=>{ console.log(r) })
+    }
+</script>
+<button onclick="getMyPage()">JWT 마이페이지 주세요</button>
+<script>
+    function getMyPage() {
+        fetch('/my-page/jwt')
+        .then(r => r.text())
+            .then((r)=>{ console.log(r) })
+    }
+</script>
+</body>
+</html>
