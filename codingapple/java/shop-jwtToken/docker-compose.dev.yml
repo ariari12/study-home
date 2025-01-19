@@ -36,7 +36,7 @@ services:
       - "3306:3306"  # 로컬 3306 -> 컨테이너 3306
 
   nginx-container:
-    image: nginx:1
+    build: ./nginx
     ports:
       - "80:80"
     depends_on:

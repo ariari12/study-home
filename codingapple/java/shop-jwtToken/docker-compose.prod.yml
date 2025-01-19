@@ -1,0 +1,25 @@
+services:
+  myserver-container:
+    build: .
+    environment:
+        SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL_AWS}
+        SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME_AWS}
+        SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD_AWS}
+        SPRING_CLOUD_AWS_CREDENTIALS_ACCESS_KEY: ${SPRING_CLOUD_AWS_CREDENTIALS_ACCESS_KEY}
+        SPRING_CLOUD_AWS_CREDENTIALS_SECRET_KEY: ${SPRING_CLOUD_AWS_CREDENTIALS_SECRET_KEY}
+        SPRING_CLOUD_AWS_REGION_STATIC: ${SPRING_CLOUD_AWS_REGION_STATIC}
+        SPRING_CLOUD_AWS_S3_BUCKET: ${SPRING_CLOUD_AWS_S3_BUCKET}
+    develop:
+      watch:
+        - action: sync+restart
+          path: .
+          target: /app
+        - action: rebuild
+          path: build.gradle
+
+  nginx-container:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - myserver-container
