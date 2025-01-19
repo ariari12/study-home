@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    // GitHub Webhook 트리거 (UI의 "GitHub hook trigger for GITScm polling"도 함께 체크 권장)
+    triggers {
+        githubPush()
+    }
+
+    // Jenkins Credentials에 등록된 환경 변수
+    environment {
+        SPRING_DATASOURCE_URL                 = credentials('SPRING_DATASOURCE_URL_AWS')
+        SPRING_DATASOURCE_USERNAME            = credentials('SPRING_DATASOURCE_USERNAME_AWS')
+        SPRING_DATASOURCE_PASSWORD            = credentials('SPRING_DATASOURCE_PASSWORD_AWS')
+        SPRING_CLOUD_AWS_CREDENTIALS_ACCESS_KEY  = credentials('SPRING_CLOUD_AWS_CREDENTIALS_ACCESS_KEY')
+        SPRING_CLOUD_AWS_CREDENTIALS_SECRET_KEY  = credentials('SPRING_CLOUD_AWS_CREDENTIALS_SECRET_KEY')
+        SPRING_CLOUD_AWS_REGION_STATIC        = credentials('SPRING_CLOUD_AWS_REGION_STATIC')
+        SPRING_CLOUD_AWS_S3_BUCKET            = credentials('SPRING_CLOUD_AWS_S3_BUCKET')
+    }
+
+    stages {
+
+        stage('Debug Webhook') {
+            steps {
+                echo "Webhook triggered successfully! (빌드가 시작되었습니다)"
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                // Jenkins가 자동으로 설정한 SCM 정보를 체크아웃
+                checkout scm
+            }
+        }
+
+        stage('Build & Deploy') {
+            steps {
+                script {
+                    // Docker Compose 빌드 + 백그라운드 실행
+                    sh 'docker-compose build'
+                    sh 'docker-compose up -d'
+                }
+            }
+        }
+    }
+}
