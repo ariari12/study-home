@@ -14,7 +14,7 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class S3Service {
 
-    @Value("${spring.cloud.aws.s3.bucket}")
+    @Value("${SPRING_CLOUD_AWS_S3_BUCKET}")
     private String bucket;
     private final S3Presigner s3Presigner;
 
