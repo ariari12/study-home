@@ -14,6 +14,6 @@ public class BasicController {
     @GetMapping("/about")
     @ResponseBody
     String about(){
-        return "피싱사이트";
+        return "피싱사이트~";
     }
 }
