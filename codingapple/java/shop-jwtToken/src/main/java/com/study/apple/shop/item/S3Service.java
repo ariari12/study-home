@@ -19,15 +19,19 @@ public class S3Service {
     private final S3Presigner s3Presigner;
 
     String createPresignedUrl(String path) {
-        var putObjectRequest = PutObjectRequest.builder()
-                .bucket(bucket)
-                .key(path)
-                .build();
-        var preSignRequest = PutObjectPresignRequest.builder()
-                .signatureDuration(Duration.ofMinutes(3))
-                .putObjectRequest(putObjectRequest)
-                .build();
-        return s3Presigner.presignPutObject(preSignRequest).url().toString();
+        try{
+            var putObjectRequest = PutObjectRequest.builder()
+                    .bucket(bucket)
+                    .key(path)
+                    .build();
+            var preSignRequest = PutObjectPresignRequest.builder()
+                    .signatureDuration(Duration.ofMinutes(3))
+                    .putObjectRequest(putObjectRequest)
+                    .build();
+            return s3Presigner.presignPutObject(preSignRequest).url().toString();
+        }catch (Exception e) {
+            throw new RuntimeException("Failed to create presigned URL for path: " + path, e);
+        }
     }
 
 
