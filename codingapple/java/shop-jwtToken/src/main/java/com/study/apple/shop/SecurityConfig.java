@@ -23,13 +23,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf((csrf)-> csrf.disable())
-                //세션 데이터를 생성을 막는 코드(jwt 토큰을 만들 예정)
+                .csrf((csrf)-> csrf.disable());
+        //세션 데이터를 생성을 막는 코드(jwt 토큰을 만들 예정)
+        http
                 .sessionManagement((session) -> session
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-
-                .addFilterBefore(new JwtFilter(), ExceptionTranslationFilter.class)
-
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        http
+                .addFilterBefore(new JwtFilter(), ExceptionTranslationFilter.class);
+        http
                 .authorizeHttpRequests(authorize ->
                     authorize
                         .requestMatchers("/**").permitAll()
