@@ -1,10 +1,14 @@
 package com.project.spring.chatserver.member.domain;
 
+import com.project.spring.chatserver.member.dto.MemberListResDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -26,4 +30,12 @@ public class Member {
     @Enumerated(EnumType.STRING)
     @Builder.Default
     private Role role = Role.USER;
+
+    public MemberListResDto toMemberListDto() {
+        MemberListResDto dto = new MemberListResDto();
+        dto.setId(id.toString());
+        dto.setEmail(email);
+        dto.setName(name);
+        return dto;
+    }
 }
