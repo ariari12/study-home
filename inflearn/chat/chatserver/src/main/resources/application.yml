@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/chatdb?useSSL=false
+    url: jdbc:mysql://localhost:3306/chatdb?allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: adslfhdlsahfo2wea5ihf3oli
   jpa:
