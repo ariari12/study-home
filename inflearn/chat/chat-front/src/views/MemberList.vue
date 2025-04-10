@@ -53,12 +53,3 @@
         }
     }
 </script>
-
-<style>
-.chat-box{
-    height: 300px;
-    overflow: auto;
-    border: 1px solid #ddd;
-    margin-bottom: 10px
-}
-</style>
