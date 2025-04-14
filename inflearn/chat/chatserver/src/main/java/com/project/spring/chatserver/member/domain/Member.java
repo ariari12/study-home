@@ -1,5 +1,6 @@
 package com.project.spring.chatserver.member.domain;
 
+import com.project.spring.chatserver.common.domain.BaseTimeEntity;
 import com.project.spring.chatserver.member.dto.MemberListResDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
