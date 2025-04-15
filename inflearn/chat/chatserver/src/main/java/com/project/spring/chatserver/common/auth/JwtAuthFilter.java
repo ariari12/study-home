@@ -1,5 +1,6 @@
 package com.project.spring.chatserver.common.auth;
 
+import com.project.spring.chatserver.common.dto.CustomUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -55,8 +56,14 @@ public class JwtAuthFilter extends GenericFilter {
 //            Authentication 객체 생성
                 List<GrantedAuthority> authorities = new ArrayList<>();
                 authorities.add(new SimpleGrantedAuthority("ROLE_"+claims.get("role")));
-                UserDetails userDetails = new User(claims.getSubject(), "", authorities);
-                Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+//                UserDetails userDetails = new User(claims.getSubject(), "", authorities);
+                CustomUser customUser = CustomUser.builder()
+                        .id(claims.get("id", Long.class))
+                        .username(claims.getSubject())
+                        .authorities(authorities)
+                        .build();
+
+                Authentication authentication = new UsernamePasswordAuthenticationToken(customUser, "", customUser.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
 
