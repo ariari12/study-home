@@ -5,6 +5,7 @@ import com.project.spring.chatserver.chat.domain.ChatParticipant;
 import com.project.spring.chatserver.chat.domain.ChatRoom;
 import com.project.spring.chatserver.chat.domain.ReadStatus;
 import com.project.spring.chatserver.chat.dto.ChatMessageReqDto;
+import com.project.spring.chatserver.chat.dto.ChatRoomListResDto;
 import com.project.spring.chatserver.chat.repository.ChatMessageRepository;
 import com.project.spring.chatserver.chat.repository.ChatParticipantRepository;
 import com.project.spring.chatserver.chat.repository.ChatRoomRepository;
@@ -18,6 +19,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -81,5 +86,39 @@ public class ChatService {
                 .build();
         chatParticipantRepository.save(participant);
 
+    }
+
+    public List<ChatRoomListResDto> getGroupChatRooms() {
+        List<ChatRoom> chatRooms = chatRoomRepository.findByIsGroupChat("Y");
+        List<ChatRoomListResDto> dtos = chatRooms.stream().map(
+                chatRoom -> ChatRoomListResDto.builder()
+                        .id(chatRoom.getId())
+                        .roomName(chatRoom.getName())
+                        .build()
+        ).toList();
+        return dtos;
+    }
+
+    public void addParticipantToGroup(Long roomId, Authentication authentication) {
+        // 회원 조회
+        CustomUser customUser = (CustomUser) authentication.getPrincipal();
+        Member member = memberRepository.findByEmail(customUser.getUsername()).orElseThrow(() -> new EntityNotFoundException("회원을 찾을 수 없습니다."));
+        // 채팅방 조회
+        ChatRoom chatRoom = chatRoomRepository.findById(roomId).orElseThrow(() -> new EntityNotFoundException("방을 찾을 수 없습니다."));
+
+        // 참여자 검증 후 저장
+        Optional<ChatParticipant> participant = chatParticipantRepository.findByChatRoomAndMember(chatRoom, member);
+        if (!participant.isPresent()) {
+            addParticipantToRoom(chatRoom, member);
+        }
+    }
+
+//    chatParticipant 객체 생성 후 저장
+    public void addParticipantToRoom(ChatRoom chatRoom, Member member) {
+        ChatParticipant participant = ChatParticipant.builder()
+                .chatRoom(chatRoom)
+                .member(member)
+                .build();
+        chatParticipantRepository.save(participant);;
     }
 }
