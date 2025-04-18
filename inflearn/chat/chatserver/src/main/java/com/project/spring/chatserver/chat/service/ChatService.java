@@ -4,7 +4,7 @@ import com.project.spring.chatserver.chat.domain.ChatMessage;
 import com.project.spring.chatserver.chat.domain.ChatParticipant;
 import com.project.spring.chatserver.chat.domain.ChatRoom;
 import com.project.spring.chatserver.chat.domain.ReadStatus;
-import com.project.spring.chatserver.chat.dto.ChatMessageReqDto;
+import com.project.spring.chatserver.chat.dto.ChatMessageDto;
 import com.project.spring.chatserver.chat.dto.ChatRoomListResDto;
 import com.project.spring.chatserver.chat.repository.ChatMessageRepository;
 import com.project.spring.chatserver.chat.repository.ChatParticipantRepository;
@@ -20,7 +20,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,16 +34,16 @@ public class ChatService {
     private final ReadStatusRepository readStatusRepository;
     private final MemberRepository memberRepository;
 
-    public void saveMessage(Long roomId, ChatMessageReqDto chatMessageReqDto) {
+    public void saveMessage(Long roomId, ChatMessageDto chatMessageDto) {
         // 채팅방 조회
         ChatRoom chatRoom = chatRoomRepository.findById(roomId).orElseThrow(() -> new EntityNotFoundException("채팅방을 찾을 수 없습니다."));
         // 보낸 사람 조회
-        Member sender = memberRepository.findByEmail(chatMessageReqDto.getSenderEmail()).orElseThrow(() -> new EntityNotFoundException(" 보낸 사람을 찾을 수 없습니다."));
+        Member sender = memberRepository.findByEmail(chatMessageDto.getSenderEmail()).orElseThrow(() -> new EntityNotFoundException(" 보낸 사람을 찾을 수 없습니다."));
         // 메시지 저장
         ChatMessage chatMessage = ChatMessage.builder()
                 .member(sender)
                 .chatRoom(chatRoom)
-                .content(chatMessageReqDto.getMessage())
+                .content(chatMessageDto.getMessage())
                 .build();
 
         chatMessageRepository.save(chatMessage);
@@ -120,5 +119,31 @@ public class ChatService {
                 .member(member)
                 .build();
         chatParticipantRepository.save(participant);;
+    }
+
+    public List<ChatMessageDto> getChatHistory(Long roomId, Authentication auth) {
+        CustomUser customUser = (CustomUser) auth.getPrincipal();
+        Member member = memberRepository.findByEmail(customUser.getUsername()).orElseThrow(() -> new EntityNotFoundException("회원을 찾을 수 없습니다."));
+        ChatRoom chatRoom = chatRoomRepository.findById(roomId).orElseThrow(() -> new EntityNotFoundException("방을 찾을 수 없습니다."));
+
+        chatParticipantRepository.findByChatRoomAndMember(chatRoom, member).orElseThrow(
+                () -> new EntityNotFoundException("채팅방 참여자가 아닙니다.")
+        );
+
+        List<ChatMessage> chatMessages = chatMessageRepository.findByChatRoomOrderByCreatedTime(chatRoom);
+
+        return chatMessages.stream().map(
+                chatMessage -> ChatMessageDto.builder()
+                        .message(chatMessage.getContent())
+                        .senderEmail(chatMessage.getMember().getEmail())
+                        .build()
+        ).toList();
+    }
+
+    public boolean isRoomParticipant(String email, String roomId) {
+        Member member = memberRepository.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("회원을 찾을 수 없습니다."));
+        ChatRoom chatRoom = chatRoomRepository.findById(Long.parseLong(roomId)).orElseThrow(() -> new EntityNotFoundException("방을 찾을 수 없습니다."));
+
+        return chatParticipantRepository.existsChatParticipantByChatRoomAndMember(chatRoom, member);
     }
 }

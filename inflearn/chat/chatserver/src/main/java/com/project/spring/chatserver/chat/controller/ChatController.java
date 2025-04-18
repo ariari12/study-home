@@ -1,5 +1,6 @@
 package com.project.spring.chatserver.chat.controller;
 
+import com.project.spring.chatserver.chat.dto.ChatMessageDto;
 import com.project.spring.chatserver.chat.dto.ChatRoomListResDto;
 import com.project.spring.chatserver.chat.service.ChatService;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,13 @@ public class ChatController {
     public ResponseEntity<?> joinGroupChatRoom(@PathVariable Long roomId, Authentication authentication) {
         chatService.addParticipantToGroup(roomId, authentication);
         return ResponseEntity.ok().build();
+    }
+
+//    이전 메세지 조회
+    @GetMapping("/history/{roomId}")
+    public ResponseEntity<?> getChatHistory(@PathVariable Long roomId, Authentication auth) {
+        List<ChatMessageDto> chatMessageDtos = chatService. getChatHistory(roomId, auth);
+        return new ResponseEntity<>(chatMessageDtos, HttpStatus.OK);
     }
 
 
