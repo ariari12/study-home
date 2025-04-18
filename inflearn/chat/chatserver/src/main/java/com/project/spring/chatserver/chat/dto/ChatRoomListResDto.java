@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ChatRoomListResDto {
-    private Long id;
+    private Long roomId;
     private String roomName;
 }

@@ -20,7 +20,7 @@ public class ChatController {
     public void createChatRoom(@RequestParam String roomName, Authentication authentication) {
         chatService.creatGroupRoom(roomName, authentication);
     }
-
+    //    그룹 채팅 목록조회
     @GetMapping("/room/group/list")
     public ResponseEntity<?> getGroupChatRooms() {
         List<ChatRoomListResDto> chatRooms = chatService.getGroupChatRooms();
@@ -32,4 +32,6 @@ public class ChatController {
         chatService.addParticipantToGroup(roomId, authentication);
         return ResponseEntity.ok().build();
     }
+
+
 }

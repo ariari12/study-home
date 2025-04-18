@@ -92,7 +92,7 @@ public class ChatService {
         List<ChatRoom> chatRooms = chatRoomRepository.findByIsGroupChat("Y");
         List<ChatRoomListResDto> dtos = chatRooms.stream().map(
                 chatRoom -> ChatRoomListResDto.builder()
-                        .id(chatRoom.getId())
+                        .roomId(chatRoom.getId())
                         .roomName(chatRoom.getName())
                         .build()
         ).toList();
