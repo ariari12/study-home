@@ -59,6 +59,12 @@ public class ChatController {
         chatService.leaveGroupChatRoom(roomId, auth);
         return ResponseEntity.ok().build();
     }
+//    개인 채팅방 개설 또는 기존 roomId return
+    @PostMapping("/room/private/create")
+    public ResponseEntity<?> getOrCreatePrivateRoom(@RequestParam Long otherMemberId, Authentication auth) {
+        Long roomId = chatService.getOrCreatePrivateRoom(otherMemberId, auth);
+        return new ResponseEntity<>(roomId, HttpStatus.OK);
+    }
 
 
 }

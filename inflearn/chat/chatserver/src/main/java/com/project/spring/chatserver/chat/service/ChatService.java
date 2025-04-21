@@ -106,6 +106,11 @@ public class ChatService {
         // 채팅방 조회
         ChatRoom chatRoom = chatRoomRepository.findById(roomId).orElseThrow(() -> new EntityNotFoundException("방을 찾을 수 없습니다."));
 
+//        그룹채팅인지 검증
+        if(!chatRoom.getIsGroupChat().equals("Y")) {
+            throw new IllegalArgumentException("그룹 채팅이 아닙니다.");
+        }
+
         // 참여자 검증 후 저장
         Optional<ChatParticipant> participant = chatParticipantRepository.findByChatRoomAndMember(chatRoom, member);
         if (!participant.isPresent()) {
@@ -193,6 +198,31 @@ public class ChatService {
             chatRoomRepository.delete(chatRoom);
         }
 
+
+    }
+
+    public Long getOrCreatePrivateRoom(Long otherMemberId, Authentication auth) {
+        CustomUser customUser = (CustomUser) auth.getPrincipal();
+        Member member = memberRepository.findByEmail(customUser.getUsername()).orElseThrow(() -> new EntityNotFoundException("회원을 찾을 수 없습니다."));
+        Member otherMember = memberRepository.findById(otherMemberId).orElseThrow(() -> new EntityNotFoundException("회원을 찾을 수 없습니다."));
+        Optional<ChatRoom> chatRooms = chatParticipantRepository.findExistingPrivateRoomId(member.getId(), otherMemberId);
+
+//        나와 상대방이 1:1 채팅에 이미 참석하고있다면 해당 roomId return
+        if(chatRooms.isPresent()){
+            return chatRooms.get().getId();
+        }
+//        만약에 1:1 채팅방이 없을 경우 기존 채팅방 개설
+        ChatRoom newRoom = ChatRoom.builder()
+                .name(member.getName() + "-" + otherMember.getName())
+                .isGroupChat("N")
+                .build();
+        chatRoomRepository.save(newRoom);
+
+//        두 사람 모두 참여자로 추가
+        addParticipantToRoom(newRoom, member);
+        addParticipantToRoom(newRoom, otherMember);
+
+        return newRoom.getId();
 
     }
 }

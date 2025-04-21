@@ -58,7 +58,6 @@ public class JwtAuthFilter extends GenericFilter {
                 authorities.add(new SimpleGrantedAuthority("ROLE_"+claims.get("role")));
 //                UserDetails userDetails = new User(claims.getSubject(), "", authorities);
                 CustomUser customUser = CustomUser.builder()
-                        .id(claims.get("id", Long.class))
                         .username(claims.getSubject())
                         .authorities(authorities)
                         .build();

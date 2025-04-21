@@ -10,7 +10,6 @@ import java.util.Collection;
 @Getter
 @Builder
 public class CustomUser implements UserDetails {
-    private final Long id;
     private final String username;
     private final Collection<? extends GrantedAuthority> authorities;  // ROLE 정보
 
